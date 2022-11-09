@@ -27,7 +27,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 group :production do
-  gem 'pg', '~> 0.21' # for Heroku deployment
+  gem 'pg', '~> 1.1' # for Heroku deployment
   gem 'rails_12factor'
 end
 # Use Redis adapter to run Action Cable in production
