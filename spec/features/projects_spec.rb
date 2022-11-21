@@ -9,6 +9,12 @@ RSpec.feature "Projects", type: :feature do
       end
     end
 
+    scenario "not signed user fails" do
+      fill_in "Description", with: "Test description"
+      click_button "Create Project"
+      expect(page).to have_content("You need to sign in or sign up before continuing.\nLog in\nEmail\nPassword\nRemember me\nSign up Forgot your password?")
+    end
+
     scenario "should be successful" do
       fill_in "Description", with: "Test description"
       click_button "Create Project"
