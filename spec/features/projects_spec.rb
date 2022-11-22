@@ -3,19 +3,17 @@ require 'rails_helper'
 RSpec.feature "Projects", type: :feature do
   context "Create new project" do
     before(:each) do
+      user = create(:user)
+      visit user_session_path
+      fill_in "Email", with: user.email
+      fill_in "Password", with: user.password
+      click_button "Log in"
       visit new_project_path
-      within("form") do
-        fill_in "Title", with: "Test title"
-      end
-    end
-
-    scenario "not signed user fails" do
-      fill_in "Description", with: "Test description"
-      click_button "Create Project"
-      expect(page).to have_content("You need to sign in or sign up before continuing.\nLog in\nEmail\nPassword\nRemember me\nSign up Forgot your password?")
     end
 
     scenario "should be successful" do
+      visit new_project_path
+      fill_in "Title", with: "Test title"
       fill_in "Description", with: "Test description"
       click_button "Create Project"
       expect(page).to have_content("Project was successfully created")
@@ -30,6 +28,11 @@ RSpec.feature "Projects", type: :feature do
   context "Update project" do
     let(:project) { Project.create(title: "Test title", description: "Test content") }
     before(:each) do
+      user = create(:user)
+      visit user_session_path
+      fill_in "Email", with: user.email
+      fill_in "Password", with: user.password
+      click_button "Log in"
       visit edit_project_path(project)
     end
 
@@ -53,6 +56,11 @@ RSpec.feature "Projects", type: :feature do
   context "Remove existing project" do
     let!(:project) { Project.create(title: "Test title", description: "Test content") }
     scenario "remove project" do
+      user = create(:user)
+      visit user_session_path
+      fill_in "Email", with: user.email
+      fill_in "Password", with: user.password
+      click_button "Log in"
       visit project_path(project)
       click_button "Destroy this project"
       expect(page).to have_content("Project was successfully destroyed")
