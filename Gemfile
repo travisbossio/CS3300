@@ -1,15 +1,20 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+# gem for devise which allows for user authentication
 gem 'devise'
+
+# gem for bootstrap which allows for easy webpage formatting
+gem 'bootstrap', '~> 5.2.2'
+
+# gem for jquery
+gem 'jquery-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-
-
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
