@@ -4,27 +4,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<p style="color: green"><%= notice %></p>
-
-<h1>Projects</h1>
-
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
-
-<div id="new_project">
+<!-- Displays user email -->
+<div class="text-center">
   <% if user_signed_in? %>
-    <%= link_to "Add New Project", new_project_url %>
-  <% end %>
+    <h3>Welcome: <%= @user.email %></h3>
+  <% else %>
+    <h3>Welcome! Please Sign In!</h3>
+  <% end %> 
 </div>
 
+<!-- if user signed in let add new project -->
+<div class="start">
+  <h5>
+    <br><br>Projects 
+    <% if user_signed_in? %>
+      <a href="/projects/new"><button class="btn btn-dark">+</button></a>
+    <% end %>
+  </h5>
+</div>
 
+<div class="row fw-bold fs-3">
+  <div class="col px-md-2"><div class="p-3 bg-none">Title</div></div>
+  <div class="col"><div class="p-1 bg-none">Description</div></div>
+</div>
 
-
-
-
+<!-- formatted title and description buttons -->
+<div class="d-flex flex-column" id="projects">
+  <% @projects.each do |project| %>
+    <a href="/projects/<%= project.id %>">
+      <button class="btn btn-light btn-outline-dark">
+        <div class="text-truncate text-start" style="width: 20rem;">
+          <%= project.title %>
+        </div>
+      </button>
+      <button class="btn btn-light btn-outline-dark">
+        <div class="text-truncate text-start" style="width: 50rem;">
+          <%= project.description %>
+        </div>
+      </button>
+    </a>
+  <% end %>
+</div>

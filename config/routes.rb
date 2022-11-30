@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root "projects#index"
   resources :projects
 
+  get 'about', to: 'about#index'
+
   # routes for destorying user session
   devise_scope :user do 
     get '/users/sign_out' => 'devise/sessions#destroy'        

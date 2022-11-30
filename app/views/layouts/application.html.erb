@@ -10,36 +10,45 @@
   </head>  
 
   <body>
+
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-    
+
     <div class="container-fluid">
+
       <a class="navbar-brand" href="/projects">CS3300 Travis Bossio</a>
       <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/projects">Projects</a>
-      </li>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example"> 
-      <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <% if !user_signed_in? %>
         <li class="nav-item">
-          <a class="nav-link" href="/users/sign_in">Sign In</a>
+          <a class="nav-link" href="/projects">Projects</a>
         </li>
-        <li class="nav-item">
-         <a class="nav-link" href="users/sign_up">Sign Up</a>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: "nav-item nav-link" %>
-        </li>
-      <% end %>
+        <% if !user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_in">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_up">Sign Up</a>
+          </li>
+        <% else %>
+          <li class="nav-item">
+          <a class="nav-link" href="/projects/new">New Project</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: "nav-item nav-link" %>
+          </li>
+        <% end %>
       </ul>
-    </div>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+        </li>
+      </ul>
+
     </div>
   </nav>
 
+  <div class="border-top fixed-bottom text-center bg-light">
+    <p>(360)791-6660 | travismbossio@gmail.com</p1>
+  </div>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
