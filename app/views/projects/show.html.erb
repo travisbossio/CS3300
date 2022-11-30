@@ -1,10 +1,20 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @project %>
 
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
+<div class="text-center fs-3 fw-bold p-5">
+  <%= @project.title %>
+</div>
 
+<div class="text-center fs-5 p-4 mx-auto" style="width: 65rem;">
+  <a href="/projects/<%= @project.id %>/edit">
+    <button class="btn btn-light btn-outline-dark">
+      <div class="text-wrap" style="width: 60rem;">
+        <%= @project.description %>
+      </div>
+    </button>
+  </a>
+</div>
+
+<div class="text-center fs-5 p-4 mx-auto" style="width: 65rem;">
   <%= button_to "Destroy this project", @project, method: :delete %>
 </div>
+
