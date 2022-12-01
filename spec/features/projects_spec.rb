@@ -69,14 +69,21 @@ RSpec.feature "Projects", type: :feature do
   end
 
   context "Check Project Attributes" do
+    before(:each) do
+      user = create(:user)
+      visit user_session_path
+      fill_in "Email", with: user.email
+      fill_in "Password", with: user.password
+      click_button "Log in"
+    end
     let!(:project) { Project.create(title: "Test title", description: "Test content") }
     scenario "Check Name" do
       visit project_path(project)
-      expect(page).to have_content("Title: Test title")
+      expect(page).to have_content("Test title")
     end
     scenario "Check Description" do
       visit project_path(project)
-      expect(page).to have_content("Description: Test content")
+      expect(page).to have_content("Test content")
     end
   end
 end
